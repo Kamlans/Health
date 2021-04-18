@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.aihealth">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Design.NoActionBar">
+        <activity android:name=".Pharmacist.PharmacistProfileActivity"></activity>
+        <activity android:name=".Pathologist.PathologistProfileActivity" />
+        <activity android:name=".Hospital.HospitalProfileActivity" />
+        <activity android:name=".Doctor.DoctorProfileActivity" />
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MoreInfoActivity" />
+        <activity android:name=".Pharmacist.PharmacistMainActivity" />
+        <activity android:name=".Pathologist.PathologistMainActivity" />
+        <activity android:name=".Hospital.HospitalMainActivity" />
+        <activity android:name=".Doctor.DoctorMainActivity" />
+        <activity android:name=".SelectUserTypeActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".BookAppoitmentActivity" />
+        <activity android:name=".UserMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

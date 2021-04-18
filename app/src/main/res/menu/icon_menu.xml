@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="HOME"
+        android:id="@+id/homeMenuItem"/>
+
+    <item android:title="DOCTOR"
+        android:id="@+id/doctorMenuItem" />
+
+    <item android:title="HOSPITAL"
+        android:id="@+id/hospitalMenuItem"/>
+
+    <item android:title="PHARMACIST"
+        android:id="@+id/pharmacistMenuItem"/>
+
+    <item android:title="PATGHOLOGIST"
+        android:id="@+id/pathologistMenuItem"/>
+
+
+
+
+</menu>
