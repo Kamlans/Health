@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 4000;
+    private final int SPLASH_DISPLAY_LENGTH = 2000;
     private static final String TAG = "kamlans";
 
     @Override
@@ -35,6 +35,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 new Runnable() {
                     @Override
                     public void run() {
+
+                       // startActivity( new Intent(getApplicationContext() , LoginActivity.class));
 
                         if (FirebaseAuth.getInstance().getCurrentUser() != null){
                             FirebaseFirestore.getInstance().collection("user")
@@ -52,8 +54,13 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                                                     switch (userType){
                                                         case Constants.UserTypeIsUser:
-                                                            Log.d(TAG, "onComplete: user");
-                                                            startActivity(new Intent( getApplicationContext() , UserMainActivity.class));
+                                                            try {
+                                                                Log.d(TAG, "onComplete: user");
+                                                                startActivity(new Intent(getApplicationContext(), UserMainActivity.class));
+                                                            }
+                                                            catch (Exception e){
+                                                                Log.d(TAG, "onComplete: error "+e);
+                                                            }
                                                             break;
                                                         case Constants.UserTypeIsDoctor:
                                                             Log.d(TAG, "onComplete: doctor");
@@ -83,8 +90,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                                         }
                                     });
                         }
-                        else {
+                        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                             startActivity( new Intent(getApplicationContext() , LoginActivity.class));
+
                         }
 
 

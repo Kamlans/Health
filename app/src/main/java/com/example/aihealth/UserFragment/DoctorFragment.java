@@ -36,7 +36,7 @@ public class DoctorFragment extends Fragment {
 
     private static final String TAG = "kamlans";
 
-    List<Doctor> list = new ArrayList<>();
+    List<Doctor> list = new ArrayList<Doctor>();
 
     public DoctorFragment() {
         // Required empty public constructor
@@ -48,6 +48,8 @@ public class DoctorFragment extends Fragment {
 
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,27 +60,33 @@ public class DoctorFragment extends Fragment {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
         DoctorAdapter doctorAdapter = new DoctorAdapter(getContext(), list);
-
-        firestore.collection("doctor")
+           firestore.collection("doctor")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                list.add(
-                                        new Doctor(
-                                                documentSnapshot.get(Constants.NameOfDoc).toString(),
-                                                documentSnapshot.get(Constants.SpecializationOfDoc).toString(),
-                                                documentSnapshot.get(Constants.PhoneNumberOfDoc).toString(),
-                                                documentSnapshot.get(Constants.QualificationOfDoc).toString(),
-                                                documentSnapshot.get(Constants.ImageOfDoctorURI).toString()
-                                        ));
 
-                                Log.d(TAG, "onComplete: "+ documentSnapshot.getId().toString());
-                            }
+
+                                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                    Doctor doc = new Doctor(
+                                            documentSnapshot.get(Constants.Name).toString(),
+                                            documentSnapshot.get(Constants.Specialization).toString(),
+                                            documentSnapshot.get(Constants.PhoneNumber).toString(),
+                                            documentSnapshot.get(Constants.Qualification).toString(),
+                                            documentSnapshot.get("img").toString()
+                                    );
+
+                                    list.add(doc);
+
+
+                                }
+
 
                             doctorAdapter.notifyDataSetChanged();
+                        }
+                        else{
+                            Log.d(TAG, "onComplete: there is an error");
                         }
                     }
                 })
@@ -88,6 +96,9 @@ public class DoctorFragment extends Fragment {
                         Log.d(TAG, "onFailure: "+e);
                     }
                 });
+
+
+
         doctorAdapter.notifyDataSetChanged();
         recyclerView.bringToFront();
         recyclerView.setAdapter(doctorAdapter);
@@ -96,6 +107,8 @@ public class DoctorFragment extends Fragment {
 
         return view;
     }
+
+
 
 
 }

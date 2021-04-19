@@ -54,4 +54,15 @@ public class Doctor {
     public void setSpecializationOfDoctor(String specializationOfDoctor) {
         this.specializationOfDoctor = specializationOfDoctor;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "nameOfDoctor='" + nameOfDoctor + '\'' +
+                ", specializationOfDoctor='" + specializationOfDoctor + '\'' +
+                ", phoneNumOfDoctor='" + phoneNumOfDoctor + '\'' +
+                ", qualificationOfDoctor='" + qualificationOfDoctor + '\'' +
+                ", imageOfDoctorURI='" + imageOfDoctorURI + '\'' +
+                '}';
+    }
 }

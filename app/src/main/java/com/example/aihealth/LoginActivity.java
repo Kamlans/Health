@@ -27,13 +27,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null) {
-
-
-
-
-            this.finish();
-        }
 
         findViewById(R.id.regText)
                 .setOnClickListener(new View.OnClickListener() {
@@ -43,7 +36,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-    }
+
+   }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -78,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-
 
     public  void handleLoginRegister( View view){
 

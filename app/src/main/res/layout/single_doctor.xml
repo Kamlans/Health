@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
+    android:background="@drawable/textbox_outline"
+    android:backgroundTint="@color/crimson"
     >
 
     <FrameLayout

@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.aihealth.Models.Doctor;
 import com.example.aihealth.MoreInfoActivity;
 import com.example.aihealth.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,8 +46,10 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
         holder.qualificationOfDoctor.setText(list.get(position).getQualificationOfDoctor());
         holder.specializationOfDoctor.setText(list.get(position).getSpecializationOfDoctor());
         holder.phoneNumOfDoctor.setText(list.get(position).getPhoneNumOfDoctor());
+        holder.phoneNumOfDoctor.setText(list.get(position).getPhoneNumOfDoctor());
 
-        Glide.with(holder.itemView).load(list.get(position).getImageOfDoctorURI()).into(holder.imageOfDoctor);
+       // Glide.with(context).load(list.get(position).getImageOfDoctorURI()).into(holder.imageOfDoctor);
+        Picasso.get().load(list.get(position).getImageOfDoctorURI()).into(holder.imageOfDoctor);
 
         holder.frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override

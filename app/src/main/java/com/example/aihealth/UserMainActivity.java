@@ -10,35 +10,110 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.aihealth.UserFragment.DoctorFragment;
 import com.example.aihealth.UserFragment.HospitalFragment;
 import com.example.aihealth.UserFragment.IntroFragment;
 import com.example.aihealth.UserFragment.PathologistFragment;
 import com.example.aihealth.UserFragment.PharmacistFragment;
+import com.example.aihealth.Utils.Constants;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserMainActivity extends AppCompatActivity {
-    private static final String TAG = "UserMainActivity";
+    private static final String TAG = "kamlans";
 
     private Toolbar toolbar ;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private FloatingActionButton fab;
+    private CircleImageView profileImageInNavHeader;
+    private TextView nameInNavHeader , phoneInNavHeader;
+    private Button editProfileBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
 
+        drawerLayout = findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.nav_view);
+
+        View headerView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.nav_header , drawerLayout , false);
+        navigationView.addHeaderView(headerView);
+
+
+        profileImageInNavHeader = headerView.findViewById(R.id.drawerImageOfUser);
+        nameInNavHeader = headerView.findViewById(R.id.nameInDrawerOfUser);
+        phoneInNavHeader = headerView.findViewById(R.id.phNumInDrawerOfUser);
+        editProfileBtn = headerView.findViewById(R.id.editBtnInDrawerOfUser);
+
+
+        FirebaseFirestore.getInstance().collection(Constants.User).document(FirebaseAuth.getInstance().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot documentSnapshot = task.getResult();
+
+                            if (documentSnapshot.exists()){
+
+                                Log.d(TAG, "onComplete: "+documentSnapshot.getData().toString());
+
+                                Glide.with(getApplicationContext())
+                                        .load(documentSnapshot.get(Constants.Image).toString()).into(profileImageInNavHeader);
+                                nameInNavHeader.setText(documentSnapshot.get(Constants.Name).toString());
+                                phoneInNavHeader.setText(documentSnapshot.get(Constants.PhoneNumber).toString());
+
+                            }
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Log.d(TAG, "onFailure: "+e);
+
+            }
+        });
+
+
+
+
+
+
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: clicked edit button");
+                startActivity(new Intent(getApplicationContext() , UserProfileActivity.class ));
+            }
+        });
+
+
+
+
         toolbar = findViewById(R.id.toolabar);
         setSupportActionBar(toolbar);
 
-        drawerLayout = findViewById(R.id.drawer);
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this ,
                 drawerLayout ,
@@ -64,7 +139,7 @@ public class UserMainActivity extends AppCompatActivity {
                     .commit();
         }
 
-        navigationView = findViewById(R.id.nav_view);
+
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -144,6 +219,10 @@ public class UserMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity( new Intent(getApplicationContext() , LoginActivity.class));
 
         }
         return true;

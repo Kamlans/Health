@@ -7,7 +7,7 @@
     tools:context=".SelectUserTypeActivity">
 
     <RadioGroup
-        android:id="@+id/MainActivityRadioGroup"
+        android:id="@+id/RadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -40,15 +40,24 @@
             android:textSize="28sp"
             android:text="Doctor" />
 
-
         <RadioButton
-            android:id="@+id/ChemistRadioButton"
+            android:id="@+id/HospitalRadioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:padding="5dp"
             android:textSize="28sp"
-            android:text="Chemist" />
+            android:text="Hospital" />
+
+
+        <RadioButton
+            android:id="@+id/PharmacistRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textSize="28sp"
+            android:text= "Pharmacist" />
 
         <RadioButton
             android:id="@+id/PathologistRadioButton"
@@ -61,5 +70,17 @@
 
 
     </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:id="@+id/continueBtnOfSelectUserType"
+        android:textColor="@color/teal_700"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/RadioGroup"
+        app:layout_constraintStart_toStartOf="@+id/RadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

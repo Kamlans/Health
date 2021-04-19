@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         android:id="@+id/nav_view"
         app:menu="@menu/icon_menu"
-        app:headerLayout="@layout/nav_header"
         android:fitsSystemWindows="true"
         android:layout_gravity="start"
         android:background="@color/nightshade"
