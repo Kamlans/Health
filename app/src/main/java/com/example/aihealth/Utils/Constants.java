@@ -7,6 +7,9 @@ public interface Constants {
      String Hospital = "hospital";
      String Pharmacist = "pharmacist";
      String Pathologist ="pathologist";
+     String Appointment = "appointment";
+     String UID = "uid";
+
 
      String Name ="name";
      String Image = "img";
@@ -28,6 +31,9 @@ public interface Constants {
      String  QualificationOfDoc = "QualificationOfDoc";
      String  PhoneNumberOfDoc = "PhoneNumberOfDoc";
      String  ImageOfDoctorURI = "ImageOfDoctorURI";
+
+     String RazorPayKeyId = "rzp_test_nHP5KvwbbumvzD";
+     String RazorPayKeySecret = "qMTs8wULJTnqsihjUr2gjlZM";
 
 
 }

@@ -46,7 +46,6 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
         holder.qualificationOfDoctor.setText(list.get(position).getQualificationOfDoctor());
         holder.specializationOfDoctor.setText(list.get(position).getSpecializationOfDoctor());
         holder.phoneNumOfDoctor.setText(list.get(position).getPhoneNumOfDoctor());
-        holder.phoneNumOfDoctor.setText(list.get(position).getPhoneNumOfDoctor());
 
        // Glide.with(context).load(list.get(position).getImageOfDoctorURI()).into(holder.imageOfDoctor);
         Picasso.get().load(list.get(position).getImageOfDoctorURI()).into(holder.imageOfDoctor);
@@ -54,7 +53,14 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
         holder.frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent( context , MoreInfoActivity.class));
+                Intent intent = new Intent( context , MoreInfoActivity.class);
+                intent.putExtra("name" ,list.get(position).getNameOfDoctor());
+                intent.putExtra("qualification" ,list.get(position).getQualificationOfDoctor());
+                intent.putExtra("specialization" ,list.get(position).getSpecializationOfDoctor());
+                intent.putExtra("phNum" ,list.get(position).getPhoneNumOfDoctor());
+                intent.putExtra("img" ,list.get(position).getImageOfDoctorURI());
+
+                context.startActivity(intent);
             }
         });
 

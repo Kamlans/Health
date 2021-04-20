@@ -69,6 +69,9 @@ dependencies {
 
     googleServices { disableVersionCheck = true }
 
+    //razorpay
+    implementation 'com.razorpay:checkout:1.6.6'
+
 
 
 
