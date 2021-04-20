@@ -1,6 +1,7 @@
 package com.example.aihealth.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class PharmacistAdapter extends RecyclerView.Adapter<PharmacistAdapter.Vi
 
     Context context;
     List<Pharmacist> list;
+    private static final String TAG = "kamlans";
 
     public PharmacistAdapter(Context context, List<Pharmacist> list) {
         this.context = context;
@@ -35,10 +37,39 @@ public class PharmacistAdapter extends RecyclerView.Adapter<PharmacistAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Glide.with(context).load(list.get(position).getImgUrl()).into(holder.imageView);
-        holder.name.setText(list.get(position).getName());
-        holder.phNum.setText(list.get(position).getPhNum());
-        holder.location.setText(list.get(position).getLocatin());
+        try{
+           Glide.with(context).load(list.get(position).getImgUrl()).into(holder.imageView);
+            // holder.imageView.setImageResource(R.drawable.ic_launcher_background);
+        }
+        catch (Exception e){
+            Log.d(TAG, "onBindViewHolder: glide "+e);
+        }
+
+        try{
+
+            holder.name.setText(list.get(position).getName());
+
+        }
+        catch (Exception e){
+            Log.d(TAG, "onBindViewHolder: name "+e);
+        }
+
+        try{
+
+            holder.phNum.setText(list.get(position).getPhNum());
+
+        }
+        catch (Exception e){
+            Log.d(TAG, "onBindViewHolder: phNum "+e);
+        }
+
+        try{
+
+            holder.location.setText(list.get(position).getLocation());
+        }
+        catch (Exception e){
+            Log.d(TAG, "onBindViewHolder: location"+e);
+        }
 
     }
 
@@ -53,10 +84,14 @@ public class PharmacistAdapter extends RecyclerView.Adapter<PharmacistAdapter.Vi
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.imageSinglePharmacist);
-            name = itemView.findViewById(R.id.nameOfPharmacistInSinglePharmacist);
-            phNum = itemView.findViewById(R.id.phNUmOfPharmacistInSinglePharmacist);
-            location = itemView.findViewById(R.id.locationOfPharmacistInSinglePharmacist);
+            try {
+                imageView = itemView.findViewById(R.id.imageSinglePharmacist);
+                name = itemView.findViewById(R.id.nameOfPharmacistInSinglePharmacist);
+                phNum = itemView.findViewById(R.id.phNUmOfPharmacistInSinglePharmacist);
+                location = itemView.findViewById(R.id.locationOfPharmacistInSinglePharmacist);
+            }catch (Exception e){
+                Log.d(TAG, "ViewHolder: "+e);
+            }
 
         }
     }

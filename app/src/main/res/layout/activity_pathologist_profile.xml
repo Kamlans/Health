@@ -6,4 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".Pathologist.PathologistProfileActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewOfPathologist"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <ImageButton
+            android:id="@+id/selectNewDpOFPathologist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textbox_outline"
+            android:padding="7dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_baseline_edit_24"
+            />
+
+        <TextView
+            android:id="@+id/phoneLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Profile Info"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="Please set your name and an optional profile image."
+            android:textSize="12sp"
+            android:paddingBottom="10dp"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewOfPathologist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:outlineAmbientShadowColor="@color/teal_700"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/nameBoxOfpathologist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/textbox_outline"
+                    android:ems="10"
+                    android:hint="Type your name"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/phone_number_boxOfPathologist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/textbox_outline"
+                    android:ems="10"
+                    android:hint="Type your phone number"
+                    android:inputType="number"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/location_boxOfPathologist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/textbox_outline"
+                    android:ems="10"
+                    android:hint="Enter your Hospital Location"
+
+                    android:padding="10dp" />
+
+
+
+                <Button
+                    android:id="@+id/continueBtnOfPathologist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/textbox_outline"
+                    android:text="Setup Profile" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarOfPathlogist"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:id="@+id/progressPercentageOfPathologist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:layout_gravity="center_horizontal"
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

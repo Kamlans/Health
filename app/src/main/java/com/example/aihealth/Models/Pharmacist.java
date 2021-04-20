@@ -2,16 +2,16 @@ package com.example.aihealth.Models;
 
 public class Pharmacist {
 
-    private String name , phNum , locatin , imgUrl;
+    private String name , phNum , location, imgUrl;
 
     public Pharmacist(){
 
     }
 
-    public Pharmacist(String name, String phNum, String locatin, String imgUrl) {
+    public Pharmacist(String name, String phNum, String location, String imgUrl) {
         this.name = name;
         this.phNum = phNum;
-        this.locatin = locatin;
+        this.location = location;
         this.imgUrl = imgUrl;
     }
 
@@ -31,12 +31,12 @@ public class Pharmacist {
         this.phNum = phNum;
     }
 
-    public String getLocatin() {
-        return locatin;
+    public String getLocation() {
+        return location;
     }
 
-    public void setLocatin(String locatin) {
-        this.locatin = locatin;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getImgUrl() {
@@ -52,7 +52,7 @@ public class Pharmacist {
         return "Pharmacist{" +
                 "name='" + name + '\'' +
                 ", phNum='" + phNum + '\'' +
-                ", locatin='" + locatin + '\'' +
+                ", locatin='" + location + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }

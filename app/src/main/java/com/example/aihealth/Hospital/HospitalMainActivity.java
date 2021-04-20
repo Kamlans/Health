@@ -17,7 +17,7 @@ public class HospitalMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_main);
 
-        findViewById(R.id.hospitalActivityLogoutBTn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.pathologistActivityLogoutBTn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();

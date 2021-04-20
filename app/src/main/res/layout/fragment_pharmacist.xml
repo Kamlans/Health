@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".UserFragment.PharmacistFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="pharmacist"
-        android:layout_gravity="center" />
+        android:id="@+id/pharmacistRecyclerView"/>
 
 </FrameLayout>
