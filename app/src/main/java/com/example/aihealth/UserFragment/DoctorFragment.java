@@ -60,6 +60,7 @@ public class DoctorFragment extends Fragment {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
         DoctorAdapter doctorAdapter = new DoctorAdapter(getContext(), list);
+
            firestore.collection("doctor")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

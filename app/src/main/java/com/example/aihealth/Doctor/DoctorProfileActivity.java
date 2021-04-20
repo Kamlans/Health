@@ -250,8 +250,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
                                         });
 
 
-//                                Toast.makeText(ProfileActivity.this, "url is"+uri, Toast.LENGTH_SHORT).show();
-//                                startActivity( new Intent( getApplicationContext() , MainActivity.class));
+
 
                             }
                         });
