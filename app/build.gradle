@@ -72,6 +72,14 @@ dependencies {
     //razorpay
     implementation 'com.razorpay:checkout:1.6.6'
 
+    //carousel
+    implementation 'com.synnapps:carouselview:0.1.5'
+
+    //fast ble
+    implementation 'com.clj.fastble:FastBleLib:2.3.4'
+
+    //for errors to go
+    implementation 'com.android.support:support-v13:26.0.2'
 
 
 

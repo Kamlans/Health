@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +35,13 @@ import java.util.HashMap;
 public class MoreInfoActivity extends AppCompatActivity implements PaymentResultListener {
 
     private static final String TAG = "kamlans";
-    private TextView name, phNum, specs, quali, location;
+    private TextView name, phNum, specs, quali, location , enteredSymptoms;
     private ImageView imageView;
-    private Button paymentBtn;
+    private Button paymentBtn , confirmSymptoms;
     Checkout checkout = new Checkout();
     String appointmentCollectionName , x , phone;
     String currentTime , successMsg;
+    private EditText symptoms;
 
 
     @Override
@@ -55,6 +58,9 @@ public class MoreInfoActivity extends AppCompatActivity implements PaymentResult
         location = findViewById(R.id.locationInMoreInfo);
         imageView = findViewById(R.id.imgInMoreInfo);
         paymentBtn = findViewById(R.id.paymentBtn);
+        enteredSymptoms = findViewById(R.id.enteredSymptom);
+        confirmSymptoms = findViewById(R.id.confirmSymptoms);
+        symptoms = findViewById(R.id.symptomsInMoreInfo);
 
         Intent intent = getIntent();
 
@@ -94,7 +100,7 @@ phone = intent.getStringExtra("phNum");
         try {
             JSONObject options = new JSONObject();
 
-            options.put("name", "Merchant Name");
+            options.put("name", x);
             options.put("description", "Reference No. #123456");
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
             // options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
@@ -120,6 +126,8 @@ phone = intent.getStringExtra("phNum");
         Log.d(TAG, "onPaymentSuccess: "+s);
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         successMsg = s;
+
+
         dataToFirebase();
 
 
@@ -136,14 +144,22 @@ phone = intent.getStringExtra("phNum");
     private  void dataToFirebase(){
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
+        String value = symptoms.getText().toString().trim();
 
         HashMap<String  , Object> appointment = new HashMap<>();
         appointment.put("nameOfDoc" , x);
         appointment.put("uidOfPatient" , FirebaseAuth.getInstance().getUid());
         appointment.put("timeStamp" , currentTime);
         appointment.put("successMsg" , successMsg);
+        appointment.put("symptom" , value);
 
 
+        appointmentCollectionName = x+phone;
+
+
+        if (TextUtils.isEmpty(value)){
+            value = "No symptom entered";
+        }
 
         firestore.collection(Constants.Appointment)
                 .document(appointmentCollectionName)

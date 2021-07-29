@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 
 import com.example.aihealth.Doctor.DoctorMainActivity;
 import com.example.aihealth.Hospital.HospitalMainActivity;
@@ -100,5 +101,75 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                 }
        , SPLASH_DISPLAY_LENGTH );
+
+
+        findViewById(R.id.buttonToContinue).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if (FirebaseAuth.getInstance().getCurrentUser() != null){
+                    FirebaseFirestore.getInstance().collection("user")
+                            .document(FirebaseAuth.getInstance().getUid())
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()){
+                                        DocumentSnapshot documentSnapshot = task.getResult();
+                                        if (documentSnapshot.exists()){
+                                            String x =  Constants.UserType;
+                                            String userType = documentSnapshot.get(x).toString();
+                                            Log.d(TAG, "onComplete: "+userType);
+
+                                            switch (userType){
+                                                case Constants.UserTypeIsUser:
+                                                    try {
+                                                        Log.d(TAG, "onComplete: user");
+                                                        startActivity(new Intent(getApplicationContext(), UserMainActivity.class));
+                                                    }
+                                                    catch (Exception e){
+                                                        Log.d(TAG, "onComplete: error "+e);
+                                                    }
+                                                    break;
+                                                case Constants.UserTypeIsDoctor:
+                                                    Log.d(TAG, "onComplete: doctor");
+                                                    startActivity(new Intent( getApplicationContext() , DoctorMainActivity.class));
+                                                    break;
+                                                case Constants.UserTypeIsHospital:
+                                                    Log.d(TAG, "onComplete: Hospital");
+                                                    startActivity(new Intent( getApplicationContext() , HospitalMainActivity.class));
+                                                    break;
+                                                case Constants.UserTypeIsPathologist:
+                                                    Log.d(TAG, "onComplete: Pathologist");
+                                                    startActivity(new Intent( getApplicationContext() , PathologistMainActivity.class));
+                                                    break;
+                                                case Constants.UserTypeIsPharmacist:
+                                                    Log.d(TAG, "onComplete: Pharmacist");
+                                                    startActivity(new Intent( getApplicationContext() , PharmacistMainActivity.class));
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: "+e);
+                                }
+                            });
+                }
+                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                    startActivity( new Intent(getApplicationContext() , LoginActivity.class));
+
+                }
+
+
+            }
+        });
+
+
     }
 }

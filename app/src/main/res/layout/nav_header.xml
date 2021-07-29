@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="bottom"
+        android:background="@drawable/linear_layout_gradient_one"
         >
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -22,11 +23,17 @@
             android:id="@+id/drawerImageOfUser"/>
 
         <TextView
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nameInDrawerOfUser"/>
 
         <TextView
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/phNumInDrawerOfUser"/>

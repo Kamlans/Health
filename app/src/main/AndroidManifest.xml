@@ -28,7 +28,9 @@
         <activity android:name=".Pharmacist.PharmacistMainActivity" />
         <activity android:name=".Pathologist.PathologistMainActivity" />
         <activity android:name=".Hospital.HospitalMainActivity" />
-        <activity android:name=".Doctor.DoctorMainActivity" />
+        <activity android:name=".Doctor.DoctorMainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity android:name=".SelectUserTypeActivity" />
         <activity android:name=".LoginActivity">
 <!--            <intent-filter>-->

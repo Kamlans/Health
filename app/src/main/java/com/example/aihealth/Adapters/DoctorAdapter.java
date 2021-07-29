@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,8 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
        // Glide.with(context).load(list.get(position).getImageOfDoctorURI()).into(holder.imageOfDoctor);
         Picasso.get().load(list.get(position).getImageOfDoctorURI()).into(holder.imageOfDoctor);
 
+        holder.linearLayout.bringToFront();
+
         holder.frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +77,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageOfDoctor;
         private TextView nameOfDoctor ,specializationOfDoctor  , phoneNumOfDoctor , qualificationOfDoctor;
+        private LinearLayout linearLayout;
         FrameLayout frameLayout;
         public ViewHolder(@NonNull View itemView) {
            super(itemView);
@@ -83,6 +87,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
             phoneNumOfDoctor = itemView.findViewById(R.id.phNumOfDoc);
             qualificationOfDoctor = itemView.findViewById(R.id.qualificationOfDoc);
             frameLayout = itemView.findViewById(R.id.doctorLayout);
+            linearLayout = itemView.findViewById(R.id.singleDoctorLinearLayout);
         }
     }
 }

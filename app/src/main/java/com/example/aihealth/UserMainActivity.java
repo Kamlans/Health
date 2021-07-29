@@ -150,6 +150,7 @@ public class UserMainActivity extends AppCompatActivity {
 
                     case R.id.homeMenuItem:
                         item.setChecked(true);
+                        toolbar.setTitle("HOME");
                         getSupportFragmentManager().beginTransaction()
                                 .replace( R.id.frame , new IntroFragment() )
                                 .addToBackStack(null)
@@ -161,6 +162,7 @@ public class UserMainActivity extends AppCompatActivity {
 
                     case R.id.doctorMenuItem:
                         item.setChecked(true);
+                        toolbar.setTitle("DOCTOR");
                         getSupportFragmentManager().beginTransaction()
                                 .replace( R.id.frame , new DoctorFragment() )
                                 .addToBackStack(null)
@@ -171,6 +173,7 @@ public class UserMainActivity extends AppCompatActivity {
 
                     case R.id.pathologistMenuItem:
                         item.setChecked(true);
+                        toolbar.setTitle("PATHOLOGIST");
                         getSupportFragmentManager().beginTransaction()
                                 .replace( R.id.frame , new PathologistFragment() )
                                 .addToBackStack(null)
@@ -180,6 +183,7 @@ public class UserMainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.pharmacistMenuItem:
+                        toolbar.setTitle("PHARMACIST");
                         getSupportFragmentManager().beginTransaction()
                                 .replace( R.id.frame , new PharmacistFragment() )
                                 .addToBackStack(null)
@@ -188,6 +192,7 @@ public class UserMainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.hospitalMenuItem:
+                        toolbar.setTitle("HOPSPITAL");
                         getSupportFragmentManager().beginTransaction()
                                 .replace( R.id.frame , new HospitalFragment() )
                                 .addToBackStack(null)
